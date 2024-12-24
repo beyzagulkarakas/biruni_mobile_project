@@ -1,0 +1,152 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS academic_calendar (
+    event_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    description TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS "announcements" (
+	"announcement_id"	INTEGER NOT NULL,
+	"title"	TEXT NOT NULL,
+	"content"	TEXT NOT NULL,
+	"date"	TEXT NOT NULL,
+	PRIMARY KEY("announcement_id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS campuses (
+    campus_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    campus_name TEXT NOT NULL,
+    campus_image TEXT,
+    campus_location TEXT
+);
+CREATE TABLE IF NOT EXISTS "course_students" (
+	"id"	INTEGER,
+	"course_id"	INTEGER NOT NULL,
+	"student_id"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT),
+	FOREIGN KEY("course_id") REFERENCES "courses"("course_id"),
+	FOREIGN KEY("student_id") REFERENCES "students"("studentId")
+);
+CREATE TABLE IF NOT EXISTS "courses" (
+	"course_id"	INTEGER,
+	"course_name"	TEXT NOT NULL,
+	"course_code"	TEXT NOT NULL UNIQUE,
+	"teacher_id"	INTEGER NOT NULL,
+	"room"	TEXT NOT NULL,
+	PRIMARY KEY("course_id" AUTOINCREMENT),
+	FOREIGN KEY("teacher_id") REFERENCES "teachers"("teacherID")
+);
+CREATE TABLE IF NOT EXISTS "grades" (
+	"grade_id"	INTEGER,
+	"student_id"	INTEGER NOT NULL,
+	"course_id"	INTEGER NOT NULL,
+	"grade"	INTEGER NOT NULL,
+	"letter_grade"	TEXT NOT NULL,
+	PRIMARY KEY("grade_id" AUTOINCREMENT),
+	FOREIGN KEY("course_id") REFERENCES "courses"("course_id"),
+	FOREIGN KEY("student_id") REFERENCES "students"("studentId")
+);
+CREATE TABLE IF NOT EXISTS "students" (
+	"studentId"	INTEGER NOT NULL,
+	"name"	TEXT NOT NULL,
+	"email"	TEXT NOT NULL UNIQUE,
+	"password"	TEXT NOT NULL,
+	"surname"	TEXT NOT NULL,
+	"department"	TEXT,
+	PRIMARY KEY("studentId" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "teachers" (
+	"teacherID"	INTEGER NOT NULL,
+	"name"	TEXT NOT NULL,
+	"surname"	TEXT NOT NULL,
+	"email"	TEXT NOT NULL UNIQUE,
+	"password"	TEXT NOT NULL,
+	PRIMARY KEY("teacherID")
+);
+INSERT INTO "academic_calendar" VALUES (0,'09.09.2024','Güz Yarıyılı Ders Seçme');
+INSERT INTO "academic_calendar" VALUES (1,'23.09.2024','Güz Yarıyılı Ders Başlangıcı');
+INSERT INTO "academic_calendar" VALUES (2,'09.11.2024','Ara Sınav');
+INSERT INTO "academic_calendar" VALUES (4,'11.11.2024','Mazeret Sınavı Başvurusu');
+INSERT INTO "academic_calendar" VALUES (5,'25.11.2024','Mazeret Sınavları');
+INSERT INTO "academic_calendar" VALUES (6,'08.01.2025','Güz Yarıyılı Dönem Sonu Sınavları');
+INSERT INTO "academic_calendar" VALUES (7,'23.01.2024','Güz Yarıyılı Bütünleme ve Not Yükseltme Sınavı Başvurusu');
+INSERT INTO "academic_calendar" VALUES (8,'27.01.2025','Güz Yarıyılı Bütünleme ve Not Yükseltme Sınavları');
+INSERT INTO "announcements" VALUES (1,'Uptodate Veri Tabanı Abone Erişimi, Üniversitemizin Kullanımına Açılmıştır.','UpToDate veri tabanı, 25 Uzmanlık alanında, 7400’den fazla uzman doktor tarafından hazırlanan 12.300’den fazla konu içeriğine erişim sunmakta olan kanıta dayalı bir klinik karar destek sistemidir.','11.11.2024');
+INSERT INTO "announcements" VALUES (2,'12 Kasım 2024 Tarihli İptal İlanı','12 Kasım 2024 Tarihli İptal İlanı','12.11.2024');
+INSERT INTO "announcements" VALUES (3,'Sağlık Bilimleri Fakültesi Ebelik Bölümü Öğr.Gör. Alımı ve Odyoloji Bölümü Araştırma Görevlisi | 15.11.2024','','15.11.2024');
+INSERT INTO "announcements" VALUES (4,'Üniversitemiz Kariyer Merkezi , Sürekli Eğitim Merkezi (KARSEM) ve Teknopark işbirliği ile yapılması planlanan Girişimcilik ve Ön Kuluçka Eğitimi Başlıyor.','Üniversitemiz Kariyer Merkezi , Sürekli Eğitim Merkezi (KARSEM) ve Teknopark işbirliği ile yapılması planlanan Girişimcilik ve Ön Kuluçka Eğitimi Başlıyor.
+
+Yeni bir gelisim, 
+
+Yeni bir Ögrenim
+
+Yeni bir Biruni Programı','20.11.2024');
+INSERT INTO "announcements" VALUES (5,'Türkiye ve Arnavutluk Arasında Eğitimde Güçlü Bağlar: Başkonsolos Armand Shandro''dan Biruni Üniversitesi’ne Ziyaret','Arnavutluk Cumhuriyeti İstanbul Başkonsolosu Armand Shandro, Biruni Üniversitesi Rektörü Prof. Dr. Adnan Yüksel’i ziyaret ederek üniversitenin Arnavutluk ve diğer bölge ülkelerinden gelen öğrencilere sağladığı samimi ortam ve kaliteli eğitim için teşekkürlerini iletti. Türkiye’de kendini ülkesindeymiş gibi rahat hissettiğini dile getiren Shandro, bu güçlü bağların daha da ileriye taşınacağına olan inancını ifade etti. ','3.12.2024');
+INSERT INTO "announcements" VALUES (6,'Biruni Üniversitesi Hayvan Deneyleri Yerel Etik Kurulu Başvurulara Açılmıştır','Biruni Üniversitesi olarak, bilimsel araştırmaların etik standartlara uygun şekilde yürütülmesi ve hayvan refahının korunması en önemli önceliklerimizdendir. Bu bağlamda, araştırmacılarımızın hayvan deneyleri yapabilmeleri için gerekli başvuruların yapılacağı Biruni Üniversitesi Hayvan Deneyleri Yerel Etik Kurulu dosya kabulüne başlamıştır.','26.11.2024');
+INSERT INTO "announcements" VALUES (7,'Biruni Üniversitesi Bahar Dönemi Yüksek Lisans ve Doktora Başvuruları Başladı!','Biruni Üniversitesi Lisansüstü Eğitim Enstitüsü Lisansüstü Programlarına 2024-2025 Eğitim-Öğretim Yılı Bahar Dönemi öğrenci alımı başvuru ve değerlendirmeleri aşağıda belirtilen tarihlerde yapılacaktır.
+
+02 Aralık- 27 Aralık 2024 Lisansüstü Başvuruları
+
+02 Aralık- 27 Aralık 2024 Yatay Geçiş Başvuruları
+
+02 – 03 Ocak 2025 Sınav (Mülakat)
+
+07 Ocak 2025 Sonuçların Değerlendirilmesi ve İlanı
+
+08 – 14 Ocak 2025 Kesin Kayıt','13.12.2024');
+INSERT INTO "announcements" VALUES (8,'Birunili Akademisyen Ödülünü Cumhurbaşkanımız Erdoğan’dan aldı	','TÜBA ve TÜBİTAK Bilim Ödülleri töreninde gebelik öncesi dönemde genetik kalıtım konusunda yaptığı araştırmayla ödüle layık görülen Biruni Üniversitesi’nden Doç.Dr. Nazlı Ece Ordueri, Cumhurbaşkanı Erdoğan’dan ödülünü aldı.','19.12.2024');
+INSERT INTO "campuses" VALUES (1,'Merkez Kampüs','C:/Users/Beyza/Downloads/merkez-kampus-55-copy.jpg','41.018005500646424, 28.916457782875955');
+INSERT INTO "course_students" VALUES (1,1,1);
+INSERT INTO "course_students" VALUES (2,1,2);
+INSERT INTO "course_students" VALUES (3,1,3);
+INSERT INTO "course_students" VALUES (4,1,4);
+INSERT INTO "course_students" VALUES (5,1,5);
+INSERT INTO "course_students" VALUES (6,1,6);
+INSERT INTO "course_students" VALUES (7,1,7);
+INSERT INTO "course_students" VALUES (8,2,1);
+INSERT INTO "course_students" VALUES (9,2,2);
+INSERT INTO "course_students" VALUES (10,2,3);
+INSERT INTO "course_students" VALUES (11,3,1);
+INSERT INTO "course_students" VALUES (12,3,2);
+INSERT INTO "course_students" VALUES (13,3,3);
+INSERT INTO "course_students" VALUES (14,3,4);
+INSERT INTO "course_students" VALUES (15,4,6);
+INSERT INTO "course_students" VALUES (16,4,5);
+INSERT INTO "course_students" VALUES (17,4,4);
+INSERT INTO "course_students" VALUES (18,4,3);
+INSERT INTO "course_students" VALUES (19,5,5);
+INSERT INTO "course_students" VALUES (20,5,4);
+INSERT INTO "course_students" VALUES (21,5,3);
+INSERT INTO "course_students" VALUES (22,5,2);
+INSERT INTO "course_students" VALUES (23,6,2);
+INSERT INTO "course_students" VALUES (24,6,1);
+INSERT INTO "course_students" VALUES (25,6,6);
+INSERT INTO "course_students" VALUES (26,6,5);
+INSERT INTO "courses" VALUES (1,'Android Cihazlarda Uygulama Geliştirme','BLG437',1,'C105');
+INSERT INTO "courses" VALUES (2,'Veritabanı Yönetim Sistemleri','BLG307',5,'A120');
+INSERT INTO "courses" VALUES (3,'Yazılım Mühendisliği','BLG305',3,'CB207');
+INSERT INTO "courses" VALUES (4,'İşletim Sistemleri','BLG301',7,'C109');
+INSERT INTO "courses" VALUES (5,'Web Programlama','BLG309',0,'A111');
+INSERT INTO "courses" VALUES (6,'Diferansiyel Denklemler','MAT105',2,'A120');
+INSERT INTO "grades" VALUES (1,1,1,50,'DC');
+INSERT INTO "grades" VALUES (2,1,2,70,'CB');
+INSERT INTO "grades" VALUES (3,1,3,83,'BA');
+INSERT INTO "grades" VALUES (4,1,4,64,'CC');
+INSERT INTO "grades" VALUES (5,1,5,54,'DC');
+INSERT INTO "grades" VALUES (6,1,6,100,'AA');
+INSERT INTO "students" VALUES (1,'Beyza Gül','220404043@st.biruni.edu.tr','12345','Karakaş','Bilgisayar Mühendisliği
+');
+INSERT INTO "students" VALUES (2,'Betül','220404040@st.biruni.edu.tr','12345','Sazak','Bilgisayar Mühendisliği');
+INSERT INTO "students" VALUES (3,'Ayşenur','220404050@st.biruni.edu.tr','12345','Taşkömür','Bilgisayar Mühendisliği
+');
+INSERT INTO "students" VALUES (4,'Nurseli','220404002@st.biruni.edu.tr','12345','Tüfekçi','Bilgisayar Mühendisliği');
+INSERT INTO "students" VALUES (5,'Abdullokh','220404925@st.biruni.edu.tr','12345','Abdulkadirov','Bilgisayar Mühendisliği
+');
+INSERT INTO "students" VALUES (6,'Burak','220404048@st.biruni.edu.tr','12345','Akgümüş','Bilgisayar Mühendisliği');
+INSERT INTO "students" VALUES (7,'Safa Abdullah','220404923@st.biruni.edu.tr','12345','Al-Galedi','Bilgisayar Mühendisliği');
+INSERT INTO "teachers" VALUES (0,'Aysun','Sezer','205@example.com','12345');
+INSERT INTO "teachers" VALUES (1,'Serra','Gücük','200@example.com','12345');
+INSERT INTO "teachers" VALUES (2,'Mustafa','Bayram','201@example.com','12345');
+INSERT INTO "teachers" VALUES (3,'Şenol','Pazar','202@example.com','12345');
+INSERT INTO "teachers" VALUES (5,'Perihan','Pehlivanoğlu','204@example.com','12345');
+INSERT INTO "teachers" VALUES (6,'Hasan','Kürüm','206@example.com','12345');
+INSERT INTO "teachers" VALUES (7,'Güray','Yılmaz','207@example.com','12345');
+COMMIT;
