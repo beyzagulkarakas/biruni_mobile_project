@@ -27,7 +27,7 @@ class CampusesScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset(
-                          'assets/images/cevizlibag_campus.jpg', // Kampüs fotoğrafını bu yola ekleyin
+                          'assets/images/cevizlibag_campus.jpg',
                           height: 200,
                           width: double.infinity,
                           fit: BoxFit.cover,
@@ -47,7 +47,6 @@ class CampusesScreen extends StatelessWidget {
                               SizedBox(height: 8),
                               GestureDetector(
                                 onTap: () {
-                                  // Kullanıcı Google Maps'e yönlendirilir
                                   showDialog(
                                     context: context,
                                     builder: (context) {
