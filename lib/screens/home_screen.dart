@@ -9,12 +9,21 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'BİRUNİ ÜNİVERSİTESİ',
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/logo.png', width: 50),
+            SizedBox(width: 10),
+            Text(
+              'BİRUNİ ÜNİVERSİTESİ',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
         centerTitle: true,
-        backgroundColor: Colors.blue[800],
+        backgroundColor: const Color.fromARGB(255, 20, 81, 150),
       ),
       body: Center(
         child: GridView.count(

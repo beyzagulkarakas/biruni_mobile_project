@@ -16,5 +16,3 @@ class BiruniMobileProject extends StatelessWidget {
     );
   }
 }
-
-
