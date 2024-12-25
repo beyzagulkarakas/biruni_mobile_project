@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'student_dashboard.dart';
-import 'teacher_dashboard.dart';
+import 'login_screen.dart';
 
 class LoginChoiceScreen extends StatelessWidget {
   @override
@@ -65,11 +64,7 @@ class LoginChoiceScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StudentDashboard(
-                      studentName: "Ali Veli", // Varsayılan örnek veri
-                      department:
-                          "Bilgisayar Mühendisliği", // Varsayılan örnek veri
-                    ),
+                    builder: (context) => LoginScreen(role: 'Öğrenci'),
                   ),
                 );
               },
@@ -90,10 +85,7 @@ class LoginChoiceScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TeacherDashboard(
-                      teacherName:
-                          "Prof. Dr. Ahmet Yılmaz", // Varsayılan örnek veri
-                    ),
+                    builder: (context) => LoginScreen(role: 'Öğretmen'),
                   ),
                 );
               },

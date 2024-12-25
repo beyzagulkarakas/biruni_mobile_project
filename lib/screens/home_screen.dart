@@ -1,29 +1,20 @@
 import 'package:biruni_mobile_project/screens/academic_calendar_screen.dart';
 import 'package:biruni_mobile_project/screens/campuses_screen.dart';
-import 'login_choice_screen.dart';
+import 'package:biruni_mobile_project/screens/login_choice_screen.dart';
+import 'package:biruni_mobile_project/screens/announcements_screen.dart'; // Duyurular ekranını import et
 import 'package:flutter/material.dart';
-import 'announcements_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/logo.png', width: 50),
-            SizedBox(width: 10),
-            Text(
-              'BİRUNİ ÜNİVERSİTESİ',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        title: Text(
+          'BİRUNİ ÜNİVERSİTESİ',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 20, 81, 150),
+        backgroundColor: Colors.blue[800],
       ),
       body: Center(
         child: GridView.count(
@@ -38,6 +29,8 @@ class HomeScreen extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => LoginChoiceScreen()),
               );
             }),
+
+            // Duyurular Kartı
             _buildCard(context, 'Duyurular', Icons.announcement, Colors.orange,
                 () {
               Navigator.push(
@@ -45,6 +38,7 @@ class HomeScreen extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => AnnouncementsScreen()),
               );
             }),
+
             _buildCard(
                 context, 'Akademik Takvim', Icons.calendar_today, Colors.blue,
                 () {
@@ -54,6 +48,7 @@ class HomeScreen extends StatelessWidget {
                     builder: (context) => AcademicCalendarScreen()),
               );
             }),
+
             _buildCard(
                 context, 'Yerleşkelerimiz', Icons.location_on, Colors.red, () {
               Navigator.push(

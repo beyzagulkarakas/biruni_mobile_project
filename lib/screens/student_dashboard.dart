@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 class StudentDashboard extends StatelessWidget {
   final String studentName;
   final String department;

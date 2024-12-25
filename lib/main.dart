@@ -12,7 +12,7 @@ class BiruniMobileProject extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Biruni Üniversitesi',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: SplashScreen(), // Splash Screen'i başlangıç ekranı olarak ayarla
+      home: SplashScreen(),
     );
   }
 }

@@ -39,7 +39,6 @@ class TeacherDashboard extends StatelessWidget {
               title: Text("Profil"),
               onTap: () {
                 Navigator.pop(context);
-                // Profil ekranına yönlendirme eklenebilir
               },
             ),
             ListTile(
@@ -47,7 +46,6 @@ class TeacherDashboard extends StatelessWidget {
               title: Text("Duyurular"),
               onTap: () {
                 Navigator.pop(context);
-                // Duyurular ekranına yönlendirme eklenebilir
               },
             ),
             ListTile(
@@ -55,7 +53,6 @@ class TeacherDashboard extends StatelessWidget {
               title: Text("Akademik Takvim"),
               onTap: () {
                 Navigator.pop(context);
-                // Akademik takvim ekranına yönlendirme eklenebilir
               },
             ),
             ListTile(
@@ -63,7 +60,6 @@ class TeacherDashboard extends StatelessWidget {
               title: Text("Çıkış Yap"),
               onTap: () {
                 Navigator.pop(context);
-                // Çıkış işlemi yapılabilir
               },
             ),
           ],
@@ -76,18 +72,11 @@ class TeacherDashboard extends StatelessWidget {
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
           children: [
-            _buildCard(context, "Dersler", Icons.book, Colors.green, () {
-              // Dersler ekranına yönlendirme
-            }),
-            _buildCard(context, "Duyurular", Icons.announcement, Colors.orange,
-                () {
-              // Duyurular ekranına yönlendirme
-            }),
+            _buildCard(context, "Dersler", Icons.book, Colors.green, () {}),
             _buildCard(
-                context, "Akademik Takvim", Icons.calendar_today, Colors.blue,
-                () {
-              // Akademik Takvim ekranına yönlendirme
-            }),
+                context, "Duyurular", Icons.announcement, Colors.orange, () {}),
+            _buildCard(context, "Akademik Takvim", Icons.calendar_today,
+                Colors.blue, () {}),
             _buildCard(context, "Çıkış Yap", Icons.logout, Colors.red, () {
               Navigator.pop(context);
             }),
